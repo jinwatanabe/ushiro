@@ -22,15 +22,11 @@ $ cd ushiro
 $ make dev
 ```
 
+Access to http://localhost:5173
+
 # Test
 
 ```bash
 # Run test
 $ make test
-
-# RUN lint check
-$ make lint
-
-# RUN auto formatter
-$ make black
 ```
