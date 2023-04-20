@@ -4,7 +4,7 @@ function App() {
   return (
     <>
       <div className="text-blue-500">TailwindCSS</div>
-      <button className="btn">DaisyUI</button>
+      <button className="btn">daisyUI</button>
     </>
   );
 }
