@@ -13,6 +13,7 @@
 ```bash
 $ git clone https://github.com/jinwatanabe/ushiro
 $ cd ushiro
+$ npm install
 ```
 
 # Usage
