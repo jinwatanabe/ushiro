@@ -23,7 +23,7 @@ $ npm install
 $ make dev
 ```
 
-Access to http://localhost:5173
+Access to http://localhost:3000
 
 # Test
 
