@@ -72,7 +72,6 @@ export const Login: FC = () => {
       password,
     });
 
-
     if (error) {
       setLoginError(error.message);
       return;

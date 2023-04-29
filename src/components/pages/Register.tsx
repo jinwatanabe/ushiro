@@ -78,71 +78,76 @@ export const Register: FC = () => {
 
   return (
     <div className="flex flex-col w-screen h-screen justify-center items-center">
-      <form onSubmit={submitHandler}>
-        <div className="form-control w-full max-w-md bg-gray-200 p-10 rounded">
-          <label className="label">
-            <span className="label-text">Email</span>
-          </label>
-          <input
-            type="text"
-            id="email"
-            value={email}
-            placeholder="email"
-            className="input input-bordered w-full"
-            onChange={(e) => {
-              setEmail(e.target.value);
-              changeValue(e.target.value, emailSchema, setEmailError);
-            }}
-          />
-          <p className="text-error p-1">{emailError}</p>
-          <label className="label">
-            <span className="label-text">Password</span>
-          </label>
-          <input
-            type="password"
-            id="password"
-            value={password}
-            placeholder="password"
-            className="input input-bordered w-full"
-            onChange={(e) => {
-              setPassword(e.target.value);
-              changeValue(e.target.value, passwordSchema, setPasswordError);
-            }}
-          />
-          <p className="text-error p-1">{passwordError}</p>
-          <label className="label">
-            <span className="label-text">PasswordConfirm</span>
-          </label>
-          <input
-            type="password"
-            id="passwordConfirm"
-            value={passwordConfirm}
-            placeholder="passwordConfirm"
-            className="input input-bordered w-full"
-            onChange={(e) => {
-              setPasswordConfirm(e.target.value);
-              changeValue(
-                e.target.value,
-                passwordSchema,
-                setPasswordConfirmError
-              );
-            }}
-          />
-          <p className="text-error p-1">{passwordConfirmError}</p>
-          <button
-            type="submit"
-            disabled={submitDisabled}
-            className={
-              isLoading
-                ? "btn loading btn-primary mt-5"
-                : "btn btn-primary mt-5"
-            }
-          >
-            {isLoading ? "" : "サインアップ"}
-          </button>
-          <p className="text-error p-1">{loginError}</p>
-        </div>
-      </form>
+      <div>
+        <form
+          onSubmit={submitHandler}
+          className="flex justify-center items-center flex-column w-screen"
+        >
+          <div className="form-control w-full max-w-md bg-base-200 p-10 rounded">
+            <label className="label">
+              <span className="label-text">Email</span>
+            </label>
+            <input
+              type="text"
+              id="email"
+              value={email}
+              placeholder="email"
+              className="input input-bordered w-full"
+              onChange={(e) => {
+                setEmail(e.target.value);
+                changeValue(e.target.value, emailSchema, setEmailError);
+              }}
+            />
+            <p className="text-error p-1">{emailError}</p>
+            <label className="label">
+              <span className="label-text">Password</span>
+            </label>
+            <input
+              type="password"
+              id="password"
+              value={password}
+              placeholder="password"
+              className="input input-bordered w-full"
+              onChange={(e) => {
+                setPassword(e.target.value);
+                changeValue(e.target.value, passwordSchema, setPasswordError);
+              }}
+            />
+            <p className="text-error p-1">{passwordError}</p>
+            <label className="label">
+              <span className="label-text">PasswordConfirm</span>
+            </label>
+            <input
+              type="password"
+              id="passwordConfirm"
+              value={passwordConfirm}
+              placeholder="passwordConfirm"
+              className="input input-bordered w-full"
+              onChange={(e) => {
+                setPasswordConfirm(e.target.value);
+                changeValue(
+                  e.target.value,
+                  passwordSchema,
+                  setPasswordConfirmError
+                );
+              }}
+            />
+            <p className="text-error p-1">{passwordConfirmError}</p>
+            <button
+              type="submit"
+              disabled={submitDisabled}
+              className={
+                isLoading
+                  ? "btn loading btn-primary mt-5"
+                  : "btn btn-primary mt-5"
+              }
+            >
+              {isLoading ? "" : "サインアップ"}
+            </button>
+            <p className="text-error p-1">{loginError}</p>
+          </div>
+        </form>
+      </div>
       <div>
         <p
           onClick={() => navigate("/login")}
