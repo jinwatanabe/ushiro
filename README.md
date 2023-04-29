@@ -30,8 +30,7 @@ Access to http://localhost:3000
 # Deploy
 
 ```bash
-$ npm run build
-$ firebase deploy --only hosting
+$ make deploy
 ```
 
 # Test

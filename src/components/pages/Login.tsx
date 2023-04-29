@@ -48,6 +48,8 @@ export const Login: FC = () => {
       icon: "success",
       title: location.state.message,
     });
+
+    location.state.meessage = "";
   });
 
   const changeValue = (
