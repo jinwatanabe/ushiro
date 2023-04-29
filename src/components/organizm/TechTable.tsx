@@ -1,5 +1,5 @@
-import React from "react";
+import { FC } from "react";
 
-export const TechTable = () => {
-  return <div>TechTable</div>;
+export const TechTable: FC = () => {
+  return <div>CommingSoon...</div>;
 };

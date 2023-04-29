@@ -3,7 +3,9 @@ import { LogTable } from "../organizm/LogTable";
 import { TechTable } from "../organizm/TechTable";
 
 export const Home: FC = () => {
-  const [activeTab, setActiveTab] = useState<"LogTable" | "TechTable" | "">("");
+  const [activeTab, setActiveTab] = useState<"LogTable" | "TechTable">(
+    "LogTable"
+  );
   return (
     <div className="w-screen h-screen flex flex-col items-center p-10">
       <div className="tabs">
@@ -33,11 +35,13 @@ export const Home: FC = () => {
         </a>
       </div>
 
-      {activeTab === "LogTable" ? (
-        <LogTable></LogTable>
-      ) : (
-        <TechTable></TechTable>
-      )}
+      <div className="mt-5 w-10/12">
+        {activeTab === "LogTable" ? (
+          <LogTable></LogTable>
+        ) : (
+          <TechTable></TechTable>
+        )}
+      </div>
     </div>
   );
 };

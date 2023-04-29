@@ -1,7 +1,14 @@
 import { describe, it, expect, vi } from "vitest";
 import { ReflectionGateway } from "../../gateway/ReflectionGateway.ts";
-import { ReflectionDriver } from "../../driver/ReflectionDriver.ts";
-import { reflection, reflections } from "../data/Reflections.ts";
+import {
+  ReflectionDriver,
+  ResponseJson,
+} from "../../driver/ReflectionDriver.ts";
+import {
+  reflection,
+  reflectionJsons,
+  reflections,
+} from "../data/Reflections.ts";
 
 describe("reflectionGateway", () => {
   it("行のデータが返ってくること", async () => {
@@ -10,13 +17,13 @@ describe("reflectionGateway", () => {
     const driverMock = {} as ReflectionDriver;
 
     driverMock.getAll = vi.fn(async () => {
-      return expected;
+      return reflectionJsons as ResponseJson[];
     });
 
     const target = new ReflectionGateway(driverMock);
     const actual = await target.getAll();
 
-    expect(actual).toBe(expected);
+    expect(actual).toEqual(expected);
   });
 
   it("行に登録できること", async () => {

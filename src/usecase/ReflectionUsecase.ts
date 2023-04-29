@@ -1,5 +1,5 @@
 import { ReflectionInputPort } from "./port/ReflectionInputPort";
-import { Reflection } from "../domain/Reflection"
+import { Reflection } from "../domain/Reflection";
 
 export class ReflectionUsecase {
   constructor(private inputPort: ReflectionInputPort) {}
@@ -8,6 +8,8 @@ export class ReflectionUsecase {
   }
 
   addLog(reflection: Reflection) {
+    console.log("ReflectionUsecase.addLog");
+    console.log(reflection);
     return this.inputPort.addLog(reflection);
   }
 }
