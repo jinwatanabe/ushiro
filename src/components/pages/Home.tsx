@@ -7,7 +7,7 @@ export const Home: FC = () => {
     "LogTable"
   );
   return (
-    <div className="w-screen h-screen flex flex-col items-center p-10">
+    <div className="w-screen h-screen flex flex-col items-center p-10" data-theme="cupcake">
       <div className="tabs">
         <a
           onClick={() => {

@@ -1,11 +1,13 @@
 <div><img src="./docs/images/main.jpg" /></div>
 
 <div align="center">Ushiro is a system to keep track of the reflection methods implemented</div>
+<div align="center">https://ushiro-6eacd.web.app/</div>
 
 ---
 
 - [Installation](#installation)
 - [Usage](#usage)
+- [Deploy](#Deploy)
 - [Test](#test)
 
 # Installation
@@ -24,6 +26,13 @@ $ make dev
 ```
 
 Access to http://localhost:3000
+
+# Deploy
+
+```bash
+$ npm run build
+$ firebase deploy --only hosting
+```
 
 # Test
 
