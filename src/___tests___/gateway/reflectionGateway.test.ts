@@ -1,24 +1,21 @@
 import { describe, it, expect, vi } from "vitest";
 import { ReflectionGateway } from "../../gateway/ReflectionGateway.ts";
-import { ReflectionDriver } from "../../driver/ReflectionDriver.ts"
-import { Reflection } from "../../domain/Reflection.ts"
+import { ReflectionDriver } from "../../driver/ReflectionDriver.ts";
+import { reflections } from "../data/Reflections.ts";
 
-describe ("reflectionGateway", () => {
-  it ("行のデータが返ってくること", async () => {
-    const expected = [
-      new Reflection("1", new Date(), "test", "KPT", "FDL", "FuriFuri"),
-      new Reflection("2", new Date(), "test", "KPT", "FDL", "FuriFuri"),
-    ];
+describe("reflectionGateway", () => {
+  it("行のデータが返ってくること", async () => {
+    const expected = reflections;
 
-    const driverMock = {} as ReflectionDriver
+    const driverMock = {} as ReflectionDriver;
 
     driverMock.getAll = vi.fn(async () => {
-      return expected
-    })
+      return expected;
+    });
 
-    const target = new ReflectionGateway(driverMock)
-    const actual = await target.getAll()
+    const target = new ReflectionGateway(driverMock);
+    const actual = await target.getAll();
 
-    expect(actual).toBe(expected)
-  })
-})
+    expect(actual).toBe(expected);
+  });
+});

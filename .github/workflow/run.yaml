@@ -1,0 +1,11 @@
+name: CI
+
+jobs:
+  run-vitest:
+    name: vitest
+    runs-on: ubuntu-latest
+    steps:
+      - name: test
+        run:
+          - npm install
+          - npm run test
