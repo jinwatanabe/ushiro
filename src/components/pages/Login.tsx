@@ -8,7 +8,8 @@ import {
 } from "react";
 import { z } from "zod";
 import { supabase } from "../../lib/SuperbaseClient";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
+import Swal from "sweetalert2";
 
 export const Login: FC = () => {
   const [email, setEmail] = useState("");
@@ -18,6 +19,7 @@ export const Login: FC = () => {
   const [passwordError, setPasswordError] = useState("");
   const [submitDisabled, setSubmitDisabled] = useState(true);
   const navigate = useNavigate();
+  const location = useLocation();
 
   const emailSchema = z
     .string()
@@ -29,6 +31,24 @@ export const Login: FC = () => {
   useEffect(() => {
     setSubmitDisabled(emailError !== "" || passwordError !== "");
   }, [email, password]);
+
+  useEffect(() => {
+    if (!location?.state?.message) return;
+    const Toast = Swal.mixin({
+      toast: true,
+      position: "top-end",
+      showConfirmButton: false,
+      showCloseButton: false,
+      showCancelButton: false,
+      timer: 3000,
+      timerProgressBar: false,
+    });
+
+    Toast.fire({
+      icon: "success",
+      title: location.state.message,
+    });
+  });
 
   const changeValue = (
     value: string,
@@ -52,6 +72,7 @@ export const Login: FC = () => {
       password,
     });
 
+
     if (error) {
       setLoginError(error.message);
       return;
@@ -61,50 +82,62 @@ export const Login: FC = () => {
   };
 
   return (
-    <form
-      className="flex justify-center items-center flex-column w-screen h-screen"
-      onSubmit={submitHandler}
-    >
-      <div className="form-control w-full max-w-md bg-gray-200 p-10 rounded">
-        <label className="label">
-          <span className="label-text">Email</span>
-        </label>
-        <input
-          type="text"
-          id="email"
-          value={email}
-          placeholder="email"
-          className="input input-bordered w-full"
-          onChange={(e) => {
-            setEmail(e.target.value);
-            changeValue(e.target.value, emailSchema, setEmailError);
-          }}
-        />
-        <p className="text-error p-1">{emailError}</p>
-        <label className="label">
-          <span className="label-text">Password</span>
-        </label>
-        <input
-          type="password"
-          id="password"
-          value={password}
-          placeholder="password"
-          className="input input-bordered w-full"
-          onChange={(e) => {
-            setPassword(e.target.value);
-            changeValue(e.target.value, passwordSchema, setPasswordError);
-          }}
-        />
-        <p className="text-error p-1">{passwordError}</p>
-        <button
-          type="submit"
-          disabled={submitDisabled}
-          className="btn btn-primary mt-5"
+    <div className="flex justify-center items-center h-screen w-screen flex-col">
+      <div>
+        <form
+          className="flex justify-center items-center flex-column w-screen"
+          onSubmit={submitHandler}
         >
-          ログイン
-        </button>
-        <p className="text-error p-1">{loginError}</p>
+          <div className="form-control w-full max-w-md bg-base-200 p-10 rounded">
+            <label className="label">
+              <span className="label-text">Email</span>
+            </label>
+            <input
+              type="text"
+              id="email"
+              value={email}
+              placeholder="email"
+              className="input input-bordered w-full"
+              onChange={(e) => {
+                setEmail(e.target.value);
+                changeValue(e.target.value, emailSchema, setEmailError);
+              }}
+            />
+            <p className="text-error p-1">{emailError}</p>
+            <label className="label">
+              <span className="label-text">Password</span>
+            </label>
+            <input
+              type="password"
+              id="password"
+              value={password}
+              placeholder="password"
+              className="input input-bordered w-full"
+              onChange={(e) => {
+                setPassword(e.target.value);
+                changeValue(e.target.value, passwordSchema, setPasswordError);
+              }}
+            />
+            <p className="text-error p-1">{passwordError}</p>
+            <button
+              type="submit"
+              disabled={submitDisabled}
+              className="btn btn-primary mt-5"
+            >
+              ログイン
+            </button>
+            <p className="text-error p-1">{loginError}</p>
+          </div>
+        </form>
       </div>
-    </form>
+      <div>
+        <p
+          onClick={() => navigate("/register")}
+          className="mt-1 text-info hover:text-info-content cursor-pointer"
+        >
+          サインアップはこちら
+        </p>
+      </div>
+    </div>
   );
 };

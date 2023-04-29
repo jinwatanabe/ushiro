@@ -1,6 +1,8 @@
-import "./App.css";
+import { useEffect, useState } from "react";
 import { Router } from "./Router";
 import { usecase } from "./container";
+import { supabase } from "./lib/SuperbaseClient";
+import { Session } from "@supabase/supabase-js";
 // import { ReflectionDriver } from "./driver/ReflectionDriver";
 
 function App() {
@@ -14,6 +16,18 @@ function App() {
   //   const reflections = await usecase.getAll();
   //   console.log(reflections);
   // })();
+
+  const [_, setSession] = useState<Session | null>(null);
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session);
+    });
+
+    supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session);
+    });
+  }, []);
 
   return (
     <>

@@ -6,7 +6,7 @@ import { Register } from "./components/pages/Register";
 
 export const Router: FC = () => {
   return (
-    <BrowserRouter>
+    <BrowserRouter data-theme="cupcake">
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
